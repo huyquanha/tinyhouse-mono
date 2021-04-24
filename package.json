@@ -35,6 +35,9 @@
     "workspace:format": "cd $INIT_CWD && prettier --write \"{src,test}/**/*.ts\""
   },
   "lint-staged": {
-    "packages/*/{src,test}/**/*.ts": ["prettier --write", "eslint --fix"]
+    "packages/*/{src,test}/**/*.ts": [
+      "prettier --write",
+      "eslint --fix"
+    ]
   }
 }
