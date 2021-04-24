@@ -52,3 +52,19 @@ Monorepo Setup Steps
     - When defining the script, Yarn2 provides a way to get the directory from which the script was invoked, denoted by $INIT_CWD
       => our `workspace:build` could look like this: `cd $INIT_CWD && tsc -b .` which will build whatever workspace from which we invoke this script.
     - To reference the root-level script from the workspace, we use `yarn workspace:build`.
+
+
+Setting up VSCode to work with Yarn 2
+- Smart IDEs (such as VSCode or IntelliJ) require special configuration for Typescript and extensions like prettier or eslint
+to continue working with Yarn2 Plug'n'Play
+- Run the following command `yarn dlx @yarnpkg/pnpify --sdk vscode` to install the collection of editor SDKs and settings.
+- For other editors see the full link: https://yarnpkg.com/getting-started/editor-sdks.
+
+
+Installing `workspace-tools` plugin to make working with workspaces easier (for example being able to call `yarn workspaces foreach`)
+- `yarn plugin import workspace-tools`
+- For the list of all official plugins see https://yarnpkg.com/features/plugins#official-plugins
+
+
+What is `packageExtensions` in `.yarnrc.yml`?
+- See https://yarnpkg.com/configuration/yarnrc (search for `packageExtensions`) for more details
