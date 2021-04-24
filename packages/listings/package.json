@@ -1,0 +1,6 @@
+{
+  "name": "@tinyhouse/listings",
+  "scripts": {
+    "generate": "yarn workspace:generate"
+  }
+}

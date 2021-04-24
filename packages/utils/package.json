@@ -1,0 +1,11 @@
+{
+  "name": "@tinyhouse/utils",
+  "main": "build/index",
+  "scripts": {
+    "clean": "yarn workspace:clean",
+    "build": "yarn workspace:build"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.41"
+  }
+}
