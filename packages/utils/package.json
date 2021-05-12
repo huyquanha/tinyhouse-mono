@@ -2,10 +2,29 @@
   "name": "@tinyhouse/utils",
   "main": "build/index",
   "scripts": {
+    "generate": "yarn workspace:generate",
     "clean": "yarn workspace:clean",
-    "build": "yarn workspace:build"
+    "build": "yarn workspace:build",
+    "re-build": "yarn workspace:re-build"
   },
   "devDependencies": {
-    "@types/node": "^14.14.41"
+    "@nestjs/schematics": "^7.3.1",
+    "@nestjs/testing": "^7.6.15",
+    "@types/jest": "^26.0.23",
+    "@types/mongodb": "^3.6.12",
+    "@types/node": "^15.0.2",
+    "ts-jest": "^26.5.6"
+  },
+  "dependencies": {
+    "@nestjs/common": "^7.6.15",
+    "@nestjs/config": "^0.6.3",
+    "@nestjs/core": "^7.6.15",
+    "@nestjs/graphql": "^7.10.6",
+    "apollo-server-core": "^2.24.0",
+    "graphql": "^15.5.0",
+    "joi": "^17.4.0",
+    "mongodb": "^3.6.6",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.0.1"
   }
 }

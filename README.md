@@ -68,3 +68,17 @@ Installing `workspace-tools` plugin to make working with workspaces easier (for 
 
 What is `packageExtensions` in `.yarnrc.yml`?
 - See https://yarnpkg.com/configuration/yarnrc (search for `packageExtensions`) for more details
+
+
+Debugging
+- In the root `tsconfig.json`, we need to add `sourceMap: true` to `compilerOptions` so that the compiled javascript code has a way to map
+back to our Typescript source code => allow us to put breakpoints on the Typescript code itself.
+  - This will increase the size of the `build` folder but since we are on a server environment, size of the production bundle does not matter that much. It would be nice to look into ways to only include `sourceMap: true` in debugging though.
+
+
+Keeping dependency versions consistent between workspaces
+- Run `yarn constraints` to see all conflicting-version dependencies
+- Run `yarn constraints --fix` to let yarn attempt to fix them, but this likely won't succeed.
+- Therefore, run `yarn upgrade-interactive` to upgrade the package versions interactively
+- Run `yarn constraints` again at the end to check that conflicts that you don't want
+are now resolved.

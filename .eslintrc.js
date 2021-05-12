@@ -1,8 +1,8 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    tsconfigRootDir: '.',
-    project: './packages/**/tsconfig.lint.json',
+    // tsconfigRootDir: '.',
+    // project: './packages/**/tsconfig.lint.json',
     sourceType: 'module',
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
@@ -15,11 +15,17 @@ module.exports = {
     node: true,
     jest: true,
   },
-  ignorePatterns: ['.eslintrc.js', 'jest.config.js', 'jest.config.base.js'],
+  ignorePatterns: [
+    '**/build/*.js',
+    '.eslintrc.js',
+    'jest.config.js',
+    'jest.config.base.js',
+  ],
   rules: {
     '@typescript-eslint/interface-name-prefix': 'off',
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-unused-vars': 'off',
   },
 };

@@ -2,18 +2,21 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "incremental": true,
-    "lib": ["es2019", "es2020.promise", "es2020.bigint", "es2020.string"],
     "module": "commonjs",
-    "target": "es2019",
-
+    "lib": ["es2020"],
+    "target": "es2020",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "emitDecoratorMetadata": true,
+    // allow us to use Nest class-validator
     "experimentalDecorators": true,
-    "baseUrl": ".",
-    "paths": {}
+    // allow us to add break points and debug on typescript code
+    "sourceMap": true,
+    // required to disable typecsript complaints on un-initialized attributes in GraphQL code-first classes
+    "strictPropertyInitialization": false,
+    "baseUrl": "."
   }  
 }
