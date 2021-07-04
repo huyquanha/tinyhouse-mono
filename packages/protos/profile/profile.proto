@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+// We need to append an underscore (_) to avoid naming conflict
+// when the typescript types are generated, since a profile folder
+// and a profile.ts are both generated. This will have issues
+// when being exported in index.ts
+package _profile;
+
+enum UserStatus {
+  PENDING = 0;
+  ACTIVE = 1;
+}
+
+message GetUserByIdRequest {
+  string id = 1;
+}
+
+message GetUserByIdSuccessResponse {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  int64 income = 4;
+  UserStatus status = 5;
+}
+
+message GetUserByIdErrorResponse {
+  string message = 1;
+}
+
+message GetUserByIdResponse {
+  oneof type {
+    GetUserByIdSuccessResponse success = 1;
+    GetUserByIdErrorResponse error = 2;
+  }
+}
+
+service UsersService {
+  rpc FindOneById(GetUserByIdRequest) returns (GetUserByIdResponse);
+}

@@ -6,6 +6,7 @@ import {
   Resolver,
 } from '@nestjs/graphql';
 import { DatabaseError } from '@tinyhouse/utils';
+import { ObjectId } from 'mongodb';
 import { User } from './user.model';
 import { UsersService } from './user.service';
 
@@ -25,6 +26,10 @@ export class UsersResolver {
     @Args('id') id: string,
     @Context() ctx: { user: User },
   ): Promise<typeof UserResult> {
-    return this.usersService.findOneById(ctx.user, id);
+    return this.usersService.findOneById(ctx.user, new ObjectId(id));
+  }
+
+  resolveReference(reference: { __typename: string; id: ObjectId }) {
+    return this.usersService.findOneById(UsersService.ROOT, reference.id);
   }
 }

@@ -11,8 +11,8 @@
   },
   "scripts": {
     "clean": "yarn workspace:clean",
-    "build": "yarn workspace:build",
-    "start": "node build/index.js"
+    "build": "yarn workspace:build:root",
+    "start": "node build/main.js"
   },
   "devDependencies": {
     "@types/express": "^4.17.11",

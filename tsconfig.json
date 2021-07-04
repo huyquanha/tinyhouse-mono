@@ -18,5 +18,13 @@
     // required to disable typecsript complaints on un-initialized attributes in GraphQL code-first classes
     "strictPropertyInitialization": false,
     "baseUrl": "."
-  }  
+  },
+  "references": [
+    {
+      "path": "packages/utils"
+    },
+    {
+      "path": "packages/utils"
+    }
+  ] 
 }

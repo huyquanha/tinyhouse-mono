@@ -4,8 +4,8 @@
   "scripts": {
     "generate": "yarn workspace:generate",
     "clean": "yarn workspace:clean",
-    "build": "yarn workspace:build",
-    "re-build": "yarn workspace:re-build"
+    "build": "yarn workspace:build:dep",
+    "refresh": "yarn workspace:refresh"
   },
   "devDependencies": {
     "@nestjs/schematics": "^7.3.1",

@@ -3,10 +3,15 @@ import nodeExternals from 'webpack-node-externals';
 const { WebpackPnpExternals } = require('webpack-pnp-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 import { Configuration } from 'webpack';
+import CopyPlugin from 'copy-webpack-plugin';
 
 const isProductionBuild = process.env.NODE_ENV === 'production';
 
-export const baseConfig: Configuration = {
+console.log(__dirname);
+
+export const baseConfig: (packageName: string) => Configuration = (
+  packageName: string,
+) => ({
   target: 'async-node',
   cache: !isProductionBuild,
   ...(!isProductionBuild
@@ -26,14 +31,14 @@ export const baseConfig: Configuration = {
           // I suspect this may have to do with thread-loader failing to serailize some functions in ts-loader
           // options object when passing the options to the workers, even though we don't provide any such options.
           // {
-          //   loader: 'thread-loader', // Throw ts-loader into multi-threading to speed things up.
+          //   loader: require.resolve('thread-loader'), // Throw ts-loader into multi-threading to speed things up.
           //   options: {
           //     workers: cpus().length - 1,
           //     poolTimeout: Infinity,
           //   },
           // },
           {
-            // CRAZY!! require.resolve() allows us to not need to install ts-loader in each workspace. AWESOME
+            // require.resolve() allows us to not need to install ts-loader in each workspace. AWESOME
             loader: require.resolve('ts-loader'),
             options: {
               transpileOnly: true,
@@ -72,5 +77,15 @@ export const baseConfig: Configuration = {
         files: '**/*.{ts,tsx,js,jsx}',
       },
     }),
+    new CopyPlugin({
+      patterns: [
+        {
+          context: `../${packageName}-client`,
+          from: '**/protos/**/*.proto', //'./src/protos/**/*.proto',
+          to: ({ context, absoluteFilename }) =>
+            `${context}/build/protos/[name][ext]`,
+        },
+      ],
+    }),
   ],
-};
+});

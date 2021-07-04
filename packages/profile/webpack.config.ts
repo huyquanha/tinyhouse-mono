@@ -1,14 +1,16 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import path from 'path';
+import { resolve } from 'path';
 import { Configuration } from 'webpack';
 import { baseConfig } from '../../webpack.config.base';
 
 const config: Configuration = {
-  ...baseConfig,
-  entry: path.resolve(__dirname, 'src/main.ts'),
+  ...baseConfig('profile'),
+  entry: {
+    app: resolve(__dirname, 'src/main.ts'),
+  },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'main.js',
+    path: resolve(__dirname, 'build'),
+    filename: '[name].bundle.js',
   },
 };
 

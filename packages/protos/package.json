@@ -1,0 +1,10 @@
+{
+  "name": "@tinyhouse/protos",
+  "scripts": {
+    "protogen": "./regen-protos.sh"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.3.2",
+    "@grpc/proto-loader": "^0.6.2"
+  }
+}

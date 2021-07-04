@@ -6,7 +6,7 @@
       "request": "launch",
       "name": "Debug Backend",
       "cwd": "${workspaceFolder}",
-      "preLaunchTask": "npm: re-build - packages/profile",
+      "preLaunchTask": "npm: refresh - packages/profile",
       "runtimeExecutable": "yarn",
       "runtimeArgs": ["workspace", "@tinyhouse/profile", "start"],
       "console": "integratedTerminal",

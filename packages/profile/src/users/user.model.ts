@@ -10,22 +10,15 @@ import {
   registerEnumType,
 } from '@nestjs/graphql';
 import { ObjectId } from 'mongodb';
+import { idMiddleware } from '@tinyhouse/utils';
 
-export enum UserStatus {
+export enum UserModelStatus {
   ACTIVE = 'active',
   PENDING = 'pending',
 }
-registerEnumType(UserStatus, {
-  name: 'UserStatus',
+registerEnumType(UserModelStatus, {
+  name: 'UserModelStatus',
 });
-
-const idMiddleware: FieldMiddleware = async (
-  _ctx,
-  next: NextFn<ObjectId>,
-): Promise<string> => {
-  const userId = await next();
-  return userId.toHexString();
-};
 
 const incomeMiddleware: FieldMiddleware<User, { user: User }, never> = async (
   ctx: MiddlewareContext<User, { user: User }, never>,
@@ -57,8 +50,11 @@ export class User {
   })
   _id: ObjectId;
 
-  @Field(() => UserStatus)
-  status: UserStatus;
+  @Field(() => UserModelStatus)
+  status: UserModelStatus;
+
+  @Field()
+  role?: string;
 
   @Field()
   name: string;

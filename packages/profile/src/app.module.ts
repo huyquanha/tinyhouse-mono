@@ -11,9 +11,8 @@ import {
 } from '@tinyhouse/utils';
 import { ExpressContext } from 'apollo-server-express';
 import { Db, ObjectId } from 'mongodb';
-import { UsersModule } from './users/user.module';
-import { User } from './users/user.model';
-import { AppController } from './app/app.controller';
+import { User, UsersModule } from './users';
+import { GrpcProfileClientModule } from '@tinyhouse/profile-client';
 
 const configModule = ConfigModule.forRoot({
   isGlobal: true,
@@ -52,7 +51,12 @@ const graphQLModule = GraphQLModule.forRootAsync({
 });
 
 @Module({
-  imports: [configModule, RecipesModule, UsersModule, graphQLModule],
-  controllers: [AppController],
+  imports: [
+    configModule,
+    RecipesModule,
+    UsersModule,
+    graphQLModule,
+    GrpcProfileClientModule,
+  ],
 })
 export class AppModule {}
